@@ -13,7 +13,7 @@ Trabalho Prático da disciplina de Projeto de Software.
 ## 📄 Documentação Oficial
 Toda a documentação arquitetural, requisitos e diagramas estão detalhados no nosso Google Docs. O documento possui o histórico de versões ativo para avaliação da colaboração individual.
 
-👉 [Acessar a Documentação no Google Docs](https://docs.google.com/document/d/1OIW8UEBnkd9Z4xxhr7zVsqZ1gaNuHZy90SGv8RlTVM0/edit?usp=sharing)
+👉 [Acessar a Documentação no Google Docs](https://docs.google.com/document/d/181WOAaErlYEC1vKGavw5lD9N4ANWoC7FzX2STPa0Duo/edit?usp=sharing)
 
 ---
 *Nota: Os arquivos fontes dos diagramas e as imagens exportadas serão adicionados na pasta `/diagramas` deste repositório.*
