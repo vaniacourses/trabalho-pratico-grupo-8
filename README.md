@@ -7,7 +7,7 @@ Trabalho Prático da disciplina de Projeto de Software.
 * Integrante 2 Pedro Henrique Chagas
 * Integrante 3 Gustavo Lira
 * Integrante 4 Daniel Molina
-* Integrante 5 Sérgio Herman 
+* Integrante 5 Sergio Herman 
 * Integrante 6 Rafael Portela
 
 ## 📄 Documentação Oficial
