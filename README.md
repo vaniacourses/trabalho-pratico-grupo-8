@@ -15,5 +15,7 @@ Toda a documentação arquitetural, requisitos e diagramas estão detalhados no 
 
 👉 [Acessar a Documentação no Google Docs](https://docs.google.com/document/d/181WOAaErlYEC1vKGavw5lD9N4ANWoC7FzX2STPa0Duo/edit?usp=sharing)
 
+👉 [Acessar a Apresentação](https://docs.google.com/presentation/d/1oMWpnEu8gHx7TitTXF6soyuZTsaDj166sMiz69l0ujk/edit?usp=sharing)
+
 ---
 *Nota: Os arquivos fontes dos diagramas e as imagens exportadas serão adicionados na pasta `/diagramas` deste repositório.*
