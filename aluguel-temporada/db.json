@@ -1,0 +1,44 @@
+{
+  "imoveis": [
+    {
+      "idAnfitriao": "teste",
+      "titulo": "teste",
+      "descricao": "teste etste teste ",
+      "endereco": "teste etes 45",
+      "precoPorNoite": 670,
+      "tipoImovel": "Apartamento",
+      "status": "ativo",
+      "regras": "teste teste teste",
+      "id": "6o5EFNho2z8"
+    }
+  ],
+  "fotos": [
+    {
+      "idImovel": 1,
+      "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+      "ordem": 3,
+      "id": "b7PFbIhhP4Y"
+    },
+    {
+      "idImovel": 1,
+      "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+      "ordem": 0,
+      "id": "0v59iebKGGg"
+    },
+    {
+      "idImovel": 1,
+      "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+      "ordem": 2,
+      "id": "KoVd1dF41Bw"
+    },
+    {
+      "idImovel": 1,
+      "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+      "ordem": 1,
+      "id": "WpnKT0ErRCM"
+    }
+  ],
+  "comodidades": [],
+  "disponibilidades": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
