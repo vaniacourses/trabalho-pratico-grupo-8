@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import imovelService from "../../services/imovelService";
+import GerenciarFotos from "../../components/foto/GerenciarFotos";
+import GerenciarComodidades from "../../components/comodidade/GerenciarComodidades";
 
 function EditarImovel() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [erro, setErro] = useState("");
+  const [fotos, setFotos] = useState([]);
+  const [comodidades, setComodidades] = useState([]);
   const [form, setForm] = useState({
     idAnfitriao: "",
     titulo: "",
@@ -22,6 +26,8 @@ function EditarImovel() {
       try {
         const data = await imovelService.buscarPorId(id);
         setForm(data);
+        setFotos(data.fotos || []);
+        setComodidades(data.comodidades || []);
       } catch (error) {
         console.error("Erro ao carregar imóvel:", error);
       }
@@ -48,6 +54,8 @@ function EditarImovel() {
       await imovelService.atualizar(id, {
         ...form,
         precoPorNoite: Number(form.precoPorNoite),
+        fotos,
+        comodidades,
       });
 
       navigate("/imoveis");
@@ -133,6 +141,9 @@ function EditarImovel() {
           className="border rounded-lg px-4 py-2 text-sm"
           rows={3}
         />
+
+        <GerenciarFotos fotos={fotos} onChange={setFotos} />
+        <GerenciarComodidades selecionadas={comodidades} onChange={setComodidades} />
 
         <div className="flex gap-3 mt-2">
           <button

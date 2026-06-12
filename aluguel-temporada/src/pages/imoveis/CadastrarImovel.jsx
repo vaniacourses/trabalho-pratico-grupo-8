@@ -2,10 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ImovelBuilder from "../../builders/ImovelBuilder";
 import imovelService from "../../services/imovelService";
+import GerenciarFotos from "../../components/foto/GerenciarFotos";
+import GerenciarComodidades from "../../components/comodidade/GerenciarComodidades";
 
 function CadastrarImovel() {
   const navigate = useNavigate();
   const [erro, setErro] = useState("");
+  const [fotos, setFotos] = useState([]);
+  const [comodidades, setComodidades] = useState([]);
   const [form, setForm] = useState({
     idAnfitriao: "",
     titulo: "",
@@ -35,6 +39,8 @@ function CadastrarImovel() {
         .setTipoImovel(form.tipoImovel)
         .setStatus(form.status)
         .setRegras(form.regras)
+        .setFotos(fotos)
+        .setComodidades(comodidades)
         .build();
 
       await imovelService.criar(imovel);
@@ -121,6 +127,9 @@ function CadastrarImovel() {
           className="border rounded-lg px-4 py-2 text-sm"
           rows={3}
         />
+
+        <GerenciarFotos fotos={fotos} onChange={setFotos} />
+        <GerenciarComodidades selecionadas={comodidades} onChange={setComodidades} />
 
         <div className="flex gap-3 mt-2">
           <button

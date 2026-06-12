@@ -1,44 +1,42 @@
 {
   "imoveis": [
     {
-      "idAnfitriao": "teste",
+      "idAnfitriao": "1",
       "titulo": "teste",
-      "descricao": "teste etste teste ",
-      "endereco": "teste etes 45",
-      "precoPorNoite": 670,
-      "tipoImovel": "Apartamento",
+      "descricao": "teste",
+      "endereco": "teste",
+      "precoPorNoite": 200,
+      "tipoImovel": "Casa",
       "status": "ativo",
-      "regras": "teste teste teste",
-      "id": "6o5EFNho2z8"
+      "regras": "teste",
+      "fotos": [
+        {
+          "url": "blob:http://localhost:5173/cc963ddd-34c9-46c5-8445-8653a58a7f86",
+          "nomeArquivo": "statle-result(2).png",
+          "ordem": 1
+        },
+        {
+          "url": "blob:http://localhost:5173/e0846e4c-f662-4e57-89a3-87b90ca74541",
+          "nomeArquivo": "statle-result(1).png",
+          "ordem": 2
+        },
+        {
+          "url": "blob:http://localhost:5173/33e4c032-e7c4-4198-b4ec-a0ebfff7f525",
+          "nomeArquivo": "statle-result.png",
+          "ordem": 3
+        }
+      ],
+      "comodidades": [
+        1,
+        3,
+        5,
+        7,
+        2,
+        8
+      ],
+      "id": "xGfD1DC45yc"
     }
   ],
-  "fotos": [
-    {
-      "idImovel": 1,
-      "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
-      "ordem": 3,
-      "id": "b7PFbIhhP4Y"
-    },
-    {
-      "idImovel": 1,
-      "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
-      "ordem": 0,
-      "id": "0v59iebKGGg"
-    },
-    {
-      "idImovel": 1,
-      "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
-      "ordem": 2,
-      "id": "KoVd1dF41Bw"
-    },
-    {
-      "idImovel": 1,
-      "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
-      "ordem": 1,
-      "id": "WpnKT0ErRCM"
-    }
-  ],
-  "comodidades": [],
   "disponibilidades": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

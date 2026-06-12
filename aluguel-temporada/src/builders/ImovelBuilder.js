@@ -9,6 +9,8 @@ class ImovelBuilder {
       tipoImovel: "",
       status: "ativo",
       regras: "",
+      fotos: [],
+      comodidades: [],
     };
   }
 
@@ -49,6 +51,16 @@ class ImovelBuilder {
 
   setRegras(regras) {
     this.imovel.regras = regras;
+    return this;
+  }
+
+  setFotos(fotos) {
+    this.imovel.fotos = fotos;
+    return this;
+  }
+
+  setComodidades(comodidades) {
+    this.imovel.comodidades = comodidades;
     return this;
   }
 
