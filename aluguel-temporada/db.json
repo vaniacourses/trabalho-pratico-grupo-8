@@ -142,5 +142,16 @@
       "id": "-IGcwNKofVE"
     }
   ],
+  "usuarios": [
+    {
+      "nome": "João",
+      "email": "joao@gmail",
+      "senha": "123456",
+      "telefone": "2199999999",
+      "tipo": "hospede",
+      "status": "ativo",
+      "id": "gQP7eCawXxw"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

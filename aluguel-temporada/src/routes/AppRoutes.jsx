@@ -6,6 +6,9 @@ import CadastrarImovelWizard from "../pages/imoveis/CadastrarImovelWizard";
 import ListaDisponibilidades from "../pages/disponibilidades/ListaDisponibilidades";
 import CadastrarDisponibilidade from "../pages/disponibilidades/CadastrarDisponibilidade";
 import EditarDisponibilidade from "../pages/disponibilidades/EditarDisponibilidade";
+import ListaUsuario from "../pages/usuarios/ListaUsuario";
+import CadastrarUsuario from "../pages/usuarios/CadastrarUsuario";
+import EditarUsuarios from "../pages/usuarios/EditarUsuarios";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +22,9 @@ export default function AppRoutes() {
         <Route path="/imoveis/:idImovel/disponibilidades" element={<ListaDisponibilidades />} />
         <Route path="/imoveis/:idImovel/disponibilidades/cadastrar" element={<CadastrarDisponibilidade />} />
         <Route path="/imoveis/:idImovel/disponibilidades/editar/:id" element={<EditarDisponibilidade />} />
+        <Route path="/usuarios" element={<ListaUsuario />} />s
+        <Route path="/usuarios/cadastrar" element={<CadastrarUsuario />} />
+        <Route path="/usuarios/editar/:id" element={<EditarUsuarios />} />
       </Routes>
     </BrowserRouter>
   );
