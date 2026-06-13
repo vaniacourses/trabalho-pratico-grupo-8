@@ -42,16 +42,18 @@ cd aluguel-temporada
 npm run dev
 ```
 
-Acesse em: **http://localhost:5173**
+Acesse em: **http://localhost:5173**  
 A API estará em: **http://localhost:3001**
 
 ---
 
 ## 🗂️ Estrutura do Projeto
+
+```text
 aluguel-temporada/
 ├── src/
-│   ├── builders/              # Padrões GOF - Builder
-│   │   └── ImovelBuilder.js
+│   ├── builders/              # Padrões GOF 
+│   │   └── ImovelBuilder.js   # Builder
 │   ├── components/
 │   │   ├── common/            # Componentes reutilizáveis
 │   │   │   ├── CurrencyInput.jsx
@@ -80,19 +82,7 @@ aluguel-temporada/
 │       ├── comodidades.js     # Comodidades pré-definidas do sistema
 │       └── imovelUtils.js     # Utilitários (ex: calcularValorTotal)
 └── db.json                    # Banco de dados mock (JSON Server)
----
-
-## 🔗 Integrações Pendentes
-
-### Módulo de Autenticação (a ser implementado)
-- O campo `idAnfitriao` no cadastro de imóvel atualmente é preenchido manualmente
-- Quando o módulo de autenticação for implementado, o `idAnfitriao` deve vir automaticamente do usuário logado e o campo deve ser removido do formulário de cadastro/edição
-
-### Módulo de Reservas (a ser implementado)
-- O método `disponibilidadeService.verificarSobreposicao()` está pronto para ser consumido pelo módulo de Reservas
-- A função `calcularValorTotal(precoPorNoite, dataInicio, dataFim)` em `src/utils/imovelUtils.js` está disponível para cálculo do valor da reserva
-- Os períodos de disponibilidade já validam sobreposição — reservas devem respeitar apenas períodos com `disponivel: true`
-
+```   
 ---
 
 ## 📦 Dependências Principais
