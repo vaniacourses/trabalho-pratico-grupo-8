@@ -4,18 +4,29 @@ import ImovelBuilder from "../../builders/ImovelBuilder";
 import imovelService from "../../services/imovelService";
 import GerenciarFotos from "../../components/foto/GerenciarFotos";
 import GerenciarComodidades from "../../components/comodidade/GerenciarComodidades";
+import CurrencyInput from "../../components/common/CurrencyInput";
+import EnderecoInput from "../../components/common/EnderecoInput";
 
 function CadastrarImovel() {
   const navigate = useNavigate();
   const [erro, setErro] = useState("");
   const [fotos, setFotos] = useState([]);
   const [comodidades, setComodidades] = useState([]);
+  const [precoFormatado, setPrecoFormatado] = useState("");
+  const [endereco, setEndereco] = useState({
+    logradouro: "",
+    numero: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    estado: "",
+    enderecoFormatado: "",
+  });
   const [form, setForm] = useState({
     idAnfitriao: "",
     titulo: "",
     descricao: "",
-    endereco: "",
-    precoPorNoite: "",
+    precoPorNoite: 0,
     tipoImovel: "",
     status: "ativo",
     regras: "",
@@ -30,12 +41,18 @@ function CadastrarImovel() {
     setErro("");
 
     try {
+      if (!endereco.logradouro) throw new Error("Logradouro é obrigatório.");
+      if (!endereco.numero) throw new Error("Número é obrigatório.");
+      if (!endereco.bairro) throw new Error("Bairro é obrigatório.");
+      if (!endereco.cidade) throw new Error("Cidade é obrigatória.");
+      if (!endereco.estado) throw new Error("Estado é obrigatório.");
+
       const imovel = new ImovelBuilder()
         .setIdAnfitriao(form.idAnfitriao)
         .setTitulo(form.titulo)
         .setDescricao(form.descricao)
-        .setEndereco(form.endereco)
-        .setPrecoPorNoite(Number(form.precoPorNoite))
+        .setEndereco(endereco.enderecoFormatado)
+        .setPrecoPorNoite(form.precoPorNoite)
         .setTipoImovel(form.tipoImovel)
         .setStatus(form.status)
         .setRegras(form.regras)
@@ -83,21 +100,21 @@ function CadastrarImovel() {
           className="border rounded-lg px-4 py-2 text-sm"
           rows={3}
         />
-        <input
-          name="endereco"
-          placeholder="Endereço"
-          value={form.endereco}
-          onChange={handleChange}
-          className="border rounded-lg px-4 py-2 text-sm"
-        />
-        <input
-          name="precoPorNoite"
-          placeholder="Preço por noite"
-          type="number"
-          value={form.precoPorNoite}
-          onChange={handleChange}
-          className="border rounded-lg px-4 py-2 text-sm"
-        />
+
+        <EnderecoInput value={endereco} onChange={setEndereco} />
+
+        <div className="flex flex-col gap-1">
+          <label className="text-sm text-gray-600">Preço por noite</label>
+          <CurrencyInput
+            value={precoFormatado}
+            onChange={(formatado, numerico) => {
+              setPrecoFormatado(formatado);
+              setForm({ ...form, precoPorNoite: numerico });
+            }}
+            placeholder="0,00"
+          />
+        </div>
+
         <select
           name="tipoImovel"
           value={form.tipoImovel}

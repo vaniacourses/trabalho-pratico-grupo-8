@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ListaImoveis from "../pages/imoveis/ListaImoveis";
 import CadastrarImovel from "../pages/imoveis/CadastrarImovel";
 import EditarImovel from "../pages/imoveis/EditarImovel";
+import ListaDisponibilidades from "../pages/disponibilidades/ListaDisponibilidades";
+import CadastrarDisponibilidade from "../pages/disponibilidades/CadastrarDisponibilidade";
+import EditarDisponibilidade from "../pages/disponibilidades/EditarDisponibilidade";
 
 export default function AppRoutes() {
   return (
@@ -11,6 +14,9 @@ export default function AppRoutes() {
         <Route path="/imoveis" element={<ListaImoveis />} />
         <Route path="/imoveis/cadastrar" element={<CadastrarImovel />} />
         <Route path="/imoveis/editar/:id" element={<EditarImovel />} />
+        <Route path="/imoveis/:idImovel/disponibilidades" element={<ListaDisponibilidades />} />
+        <Route path="/imoveis/:idImovel/disponibilidades/cadastrar" element={<CadastrarDisponibilidade />} />
+        <Route path="/imoveis/:idImovel/disponibilidades/editar/:id" element={<EditarDisponibilidade />} />
       </Routes>
     </BrowserRouter>
   );

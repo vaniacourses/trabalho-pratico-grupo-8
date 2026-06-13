@@ -5,7 +5,7 @@
       "titulo": "teste",
       "descricao": "teste",
       "endereco": "teste",
-      "precoPorNoite": 200,
+      "precoPorNoite": 120.99,
       "tipoImovel": "Casa",
       "status": "ativo",
       "regras": "teste",
@@ -35,8 +35,57 @@
         8
       ],
       "id": "xGfD1DC45yc"
+    },
+    {
+      "idAnfitriao": "1",
+      "titulo": "teste",
+      "descricao": "teste",
+      "endereco": "teste, 123B, teste, teste, teste, rj",
+      "precoPorNoite": 120.8,
+      "tipoImovel": "Chalé",
+      "status": "ativo",
+      "regras": "dsadeas ",
+      "fotos": [
+        {
+          "id": "foto-1781315302135-0.699658173457862",
+          "url": "blob:http://localhost:5173/aa1cc9b1-d129-488b-9f43-c6ec1f427294",
+          "nomeArquivo": "statle-result(2).png",
+          "ordem": 1
+        }
+      ],
+      "comodidades": [
+        1,
+        3,
+        5,
+        7,
+        2,
+        8
+      ],
+      "id": "2HhZyV_tg98"
     }
   ],
-  "disponibilidades": [],
+  "disponibilidades": [
+    {
+      "idImovel": null,
+      "dataInicio": "2026-06-12T03:00:00.000Z",
+      "dataFim": "2026-07-04T03:00:00.000Z",
+      "disponivel": false,
+      "id": "iq8-SB0IzEs"
+    },
+    {
+      "idImovel": null,
+      "dataInicio": "2026-06-12T03:00:00.000Z",
+      "dataFim": "2026-07-04T03:00:00.000Z",
+      "disponivel": false,
+      "id": "0IhiSyd5FGM"
+    },
+    {
+      "idImovel": "xGfD1DC45yc",
+      "dataInicio": "2026-06-12T03:00:00.000Z",
+      "dataFim": "2026-06-18T03:00:00.000Z",
+      "disponivel": true,
+      "id": "_-UzBA8UldI"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

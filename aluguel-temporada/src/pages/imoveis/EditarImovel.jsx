@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import imovelService from "../../services/imovelService";
 import GerenciarFotos from "../../components/foto/GerenciarFotos";
 import GerenciarComodidades from "../../components/comodidade/GerenciarComodidades";
+import CurrencyInput from "../../components/common/CurrencyInput";
+import EnderecoInput from "../../components/common/EnderecoInput";
 
 function EditarImovel() {
   const { id } = useParams();
@@ -10,12 +12,21 @@ function EditarImovel() {
   const [erro, setErro] = useState("");
   const [fotos, setFotos] = useState([]);
   const [comodidades, setComodidades] = useState([]);
+  const [precoFormatado, setPrecoFormatado] = useState("");
+  const [endereco, setEndereco] = useState({
+    logradouro: "",
+    numero: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    estado: "",
+    enderecoFormatado: "",
+  });
   const [form, setForm] = useState({
     idAnfitriao: "",
     titulo: "",
     descricao: "",
-    endereco: "",
-    precoPorNoite: "",
+    precoPorNoite: 0,
     tipoImovel: "",
     status: "ativo",
     regras: "",
@@ -28,6 +39,26 @@ function EditarImovel() {
         setForm(data);
         setFotos(data.fotos || []);
         setComodidades(data.comodidades || []);
+
+        // reconstrói os campos do endereço a partir da string salva
+        const partes = (data.endereco || "").split(", ");
+        setEndereco({
+          logradouro: partes[0] || "",
+          numero: partes[1] || "",
+          complemento: partes[2] || "",
+          bairro: partes[3] || "",
+          cidade: partes[4] || "",
+          estado: partes[5] || "",
+          enderecoFormatado: data.endereco || "",
+        });
+
+        const numero = data.precoPorNoite || 0;
+        setPrecoFormatado(
+          numero.toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+        );
       } catch (error) {
         console.error("Erro ao carregar imóvel:", error);
       }
@@ -47,13 +78,17 @@ function EditarImovel() {
     try {
       if (!form.titulo) throw new Error("Título é obrigatório.");
       if (!form.idAnfitriao) throw new Error("Anfitrião é obrigatório.");
-      if (!form.endereco) throw new Error("Endereço é obrigatório.");
+      if (!endereco.logradouro) throw new Error("Logradouro é obrigatório.");
+      if (!endereco.numero) throw new Error("Número é obrigatório.");
+      if (!endereco.bairro) throw new Error("Bairro é obrigatório.");
+      if (!endereco.cidade) throw new Error("Cidade é obrigatória.");
+      if (!endereco.estado) throw new Error("Estado é obrigatório.");
       if (!form.precoPorNoite) throw new Error("Preço por noite é obrigatório.");
       if (!form.tipoImovel) throw new Error("Tipo do imóvel é obrigatório.");
 
       await imovelService.atualizar(id, {
         ...form,
-        precoPorNoite: Number(form.precoPorNoite),
+        endereco: endereco.enderecoFormatado,
         fotos,
         comodidades,
       });
@@ -97,21 +132,21 @@ function EditarImovel() {
           className="border rounded-lg px-4 py-2 text-sm"
           rows={3}
         />
-        <input
-          name="endereco"
-          placeholder="Endereço"
-          value={form.endereco}
-          onChange={handleChange}
-          className="border rounded-lg px-4 py-2 text-sm"
-        />
-        <input
-          name="precoPorNoite"
-          placeholder="Preço por noite"
-          type="number"
-          value={form.precoPorNoite}
-          onChange={handleChange}
-          className="border rounded-lg px-4 py-2 text-sm"
-        />
+
+        <EnderecoInput value={endereco} onChange={setEndereco} />
+
+        <div className="flex flex-col gap-1">
+          <label className="text-sm text-gray-600">Preço por noite</label>
+          <CurrencyInput
+            value={precoFormatado}
+            onChange={(formatado, numerico) => {
+              setPrecoFormatado(formatado);
+              setForm({ ...form, precoPorNoite: numerico });
+            }}
+            placeholder="0,00"
+          />
+        </div>
+
         <select
           name="tipoImovel"
           value={form.tipoImovel}
