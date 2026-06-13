@@ -1,6 +1,146 @@
 {
-  "imoveis": [],
-  "fotos": [],
-  "comodidades": [],
-  "disponibilidades": []
+  "imoveis": [
+    {
+      "idAnfitriao": "1",
+      "titulo": "teste",
+      "descricao": "teste",
+      "endereco": "teste",
+      "precoPorNoite": 120.99,
+      "tipoImovel": "Casa",
+      "status": "ativo",
+      "regras": "teste",
+      "fotos": [
+        {
+          "url": "blob:http://localhost:5173/cc963ddd-34c9-46c5-8445-8653a58a7f86",
+          "nomeArquivo": "statle-result(2).png",
+          "ordem": 1
+        },
+        {
+          "url": "blob:http://localhost:5173/e0846e4c-f662-4e57-89a3-87b90ca74541",
+          "nomeArquivo": "statle-result(1).png",
+          "ordem": 2
+        },
+        {
+          "url": "blob:http://localhost:5173/33e4c032-e7c4-4198-b4ec-a0ebfff7f525",
+          "nomeArquivo": "statle-result.png",
+          "ordem": 3
+        }
+      ],
+      "comodidades": [
+        1,
+        3,
+        5,
+        7,
+        2,
+        8
+      ],
+      "id": "xGfD1DC45yc"
+    },
+    {
+      "idAnfitriao": "1",
+      "titulo": "teste",
+      "descricao": "teste",
+      "endereco": "teste, 123B, teste, teste, teste, rj",
+      "precoPorNoite": 120.8,
+      "tipoImovel": "Chalé",
+      "status": "ativo",
+      "regras": "dsadeas ",
+      "fotos": [
+        {
+          "id": "foto-1781315302135-0.699658173457862",
+          "url": "blob:http://localhost:5173/aa1cc9b1-d129-488b-9f43-c6ec1f427294",
+          "nomeArquivo": "statle-result(2).png",
+          "ordem": 1
+        }
+      ],
+      "comodidades": [
+        1,
+        3,
+        5,
+        7,
+        2,
+        8
+      ],
+      "id": "2HhZyV_tg98"
+    },
+    {
+      "idAnfitriao": "1",
+      "titulo": "teste",
+      "descricao": "teste",
+      "endereco": "teste, 123A, teste, teste, teste, rj",
+      "precoPorNoite": 650,
+      "tipoImovel": "Chalé",
+      "status": "ativo",
+      "regras": "teste",
+      "fotos": [
+        {
+          "id": "foto-1781361955059-0.9985650015737104",
+          "url": "blob:http://localhost:5173/7361486c-3a85-4740-ada6-c1b1123ae4b1",
+          "nomeArquivo": "statle-result(2).png",
+          "ordem": 1
+        },
+        {
+          "id": "foto-1781361955059-0.7603230075615767",
+          "url": "blob:http://localhost:5173/69f629af-20d6-481c-9aa6-d135d2e0af1f",
+          "nomeArquivo": "statle-result(1).png",
+          "ordem": 2
+        },
+        {
+          "id": "foto-1781361955059-0.615774207454992",
+          "url": "blob:http://localhost:5173/ba456dc5-e6e3-4e54-abbf-feb1243b2b05",
+          "nomeArquivo": "statle-result.png",
+          "ordem": 3
+        }
+      ],
+      "comodidades": [
+        1,
+        3,
+        7,
+        5,
+        8,
+        6,
+        4,
+        2
+      ],
+      "id": "7v7oUBrGvFQ"
+    }
+  ],
+  "disponibilidades": [
+    {
+      "idImovel": null,
+      "dataInicio": "2026-06-12T03:00:00.000Z",
+      "dataFim": "2026-07-04T03:00:00.000Z",
+      "disponivel": false,
+      "id": "iq8-SB0IzEs"
+    },
+    {
+      "idImovel": null,
+      "dataInicio": "2026-06-12T03:00:00.000Z",
+      "dataFim": "2026-07-04T03:00:00.000Z",
+      "disponivel": false,
+      "id": "0IhiSyd5FGM"
+    },
+    {
+      "idImovel": "xGfD1DC45yc",
+      "dataInicio": "2026-06-12T03:00:00.000Z",
+      "dataFim": "2026-06-18T03:00:00.000Z",
+      "disponivel": true,
+      "id": "_-UzBA8UldI"
+    },
+    {
+      "idImovel": "7v7oUBrGvFQ",
+      "dataInicio": "2026-06-13T03:00:00.000Z",
+      "dataFim": "2026-07-21T03:00:00.000Z",
+      "disponivel": true,
+      "id": "DytaADBf_WQ"
+    },
+    {
+      "idImovel": "7v7oUBrGvFQ",
+      "dataInicio": "2026-07-22T03:00:00.000Z",
+      "dataFim": "2026-07-25T03:00:00.000Z",
+      "disponivel": false,
+      "id": "-IGcwNKofVE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
