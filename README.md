@@ -52,36 +52,51 @@ A API estará em: **http://localhost:3001**
 ```text
 aluguel-temporada/
 ├── src/
-│   ├── builders/              # Padrões GOF 
-│   │   └── ImovelBuilder.js   # Builder
+│   ├── builders/                  # Padrões GOF
+│   │   └── ImovelBuilder.js       # Builder
+│   ├── factories/                 # Padrões GOF
+│   │   └── UsuarioFactory.js      # Factory
 │   ├── components/
-│   │   ├── common/            # Componentes reutilizáveis
+│   │   ├── common/                # Componentes reutilizáveis
 │   │   │   ├── CurrencyInput.jsx
 │   │   │   └── EnderecoInput.jsx
 │   │   ├── comodidade/
 │   │   │   └── GerenciarComodidades.jsx
 │   │   ├── disponibilidade/
-│   │   │   └── DisponibilidadeCard.jsx
-│   │   └── imovel/
-│   │       └── ImovelCard.jsx
+│   │   │   ├── DisponibilidadeCard.jsx
+│   │   │   └── PassosDisponibilidade.jsx      # Passo do wizard (UC06)
+│   │   ├── foto/
+│   │   │   └── GerenciarFotos.jsx
+│   │   ├── imovel/
+│   │   │   ├── ImovelCard.jsx
+│   │   │   ├── PassosDadosImovel.jsx          # Passo do wizard (UC05)
+│   │   │   └── PassosAtivarImovel.jsx         # Passo do wizard (UC07)
+│   │   └── usuarios/
+│   │       └── UsuarioCard.jsx
 │   ├── pages/
 │   │   ├── disponibilidades/
 │   │   │   ├── CadastrarDisponibilidade.jsx
 │   │   │   ├── EditarDisponibilidade.jsx
 │   │   │   └── ListaDisponibilidades.jsx
-│   │   └── imoveis/
-│   │       ├── CadastrarImovel.jsx
-│   │       ├── EditarImovel.jsx
-│   │       └── ListaImoveis.jsx
+│   │   ├── imoveis/
+│   │   │   ├── CadastrarImovel.jsx
+│   │   │   ├── CadastrarImovelWizard.jsx      # Caso de Uso Transicional (UC05→UC06→UC07)
+│   │   │   ├── EditarImovel.jsx
+│   │   │   └── ListaImoveis.jsx
+│   │   └── usuarios/
+│   │       ├── CadastrarUsuario.jsx
+│   │       ├── EditarUsuarios.jsx
+│   │       └── ListaUsuario.jsx
 │   ├── routes/
 │   │   └── AppRoutes.jsx
-│   ├── services/              # Comunicação com a API
+│   ├── services/                  # Comunicação com a API
 │   │   ├── disponibilidadeService.js
-│   │   └── imovelService.js
+│   │   ├── imovelService.js
+│   │   └── usuarioService.js
 │   └── utils/
-│       ├── comodidades.js     # Comodidades pré-definidas do sistema
-│       └── imovelUtils.js     # Utilitários (ex: calcularValorTotal)
-└── db.json                    # Banco de dados mock (JSON Server)
+│       ├── comodidades.js         # Comodidades pré-definidas do sistema
+│       └── imovelUtils.js         # Utilitários (ex: calcularValorTotal)
+└── db.json                        # Banco de dados mock (JSON Server)
 ```   
 ---
 
