@@ -4,6 +4,7 @@ import reservaService from "../../services/reservaService";
 import imovelService from "../../services/imovelService";
 import usuarioService from "../../services/usuarioService";
 import disponibilidadeService from "../../services/disponibilidadeService";
+import politicaCancelamentoService from "../../services/politicaCancelamentoService";
 import { calcularValorTotal } from "../../utils/imovelUtils";
 import { formatarValor, verificarDisponibilidadeParaReserva } from "../../utils/reservaUtils";
 
@@ -12,22 +13,26 @@ function CadastrarReserva() {
   const [erro, setErro] = useState("");
   const [imoveis, setImoveis] = useState([]);
   const [hospedes, setHospedes] = useState([]);
+  const [politicas, setPoliticas] = useState([]);
   const [form, setForm] = useState({
     idImovel: "",
     idHospede: "",
     dataEntrada: "",
     dataSaida: "",
+    idPoliticaCancelamento: "",
   });
 
   useEffect(() => {
     const carregar = async () => {
       try {
-        const [imoveisData, usuarios] = await Promise.all([
+        const [imoveisData, usuarios, politicasData] = await Promise.all([
           imovelService.listar(),
           usuarioService.listar(),
+          politicaCancelamentoService.listar(),
         ]);
         setImoveis(imoveisData);
         setHospedes(usuarios.filter((u) => u.tipo === "hospede"));
+        setPoliticas(politicasData);
       } catch (error) {
         setErro(error.message || "Erro ao carregar dados para o formulário.");
       }
@@ -82,6 +87,7 @@ function CadastrarReserva() {
         valorTotal,
         status: "Pendente",
         dataSolicitacao: new Date().toISOString(),
+        idPoliticaCancelamento: form.idPoliticaCancelamento || null,
       });
 
       navigate("/reservas");
@@ -150,6 +156,23 @@ function CadastrarReserva() {
             className="border rounded-lg px-4 py-2 text-sm"
           />
         </label>
+
+        <select
+          name="idPoliticaCancelamento"
+          value={form.idPoliticaCancelamento}
+          onChange={handleChange}
+          className="border rounded-lg px-4 py-2 text-sm"
+        >
+          <option value="">Sem política de cancelamento</option>
+          {politicas.map((politica) => (
+            <option key={politica.id} value={politica.id}>
+              {politica.descricao.length > 60
+                ? politica.descricao.slice(0, 60) + "…"
+                : politica.descricao}{" "}
+              — {politica.percentualReembolso}% em até {politica.prazoMinimoDias} dia(s)
+            </option>
+          ))}
+        </select>
 
         <div className="bg-gray-50 border rounded-lg px-4 py-3 text-sm text-gray-700">
           Valor total:{" "}

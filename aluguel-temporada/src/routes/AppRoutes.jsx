@@ -12,6 +12,9 @@ import EditarUsuarios from "../pages/usuarios/EditarUsuarios";
 import ListaReservas from "../pages/reservas/ListaReservas";
 import CadastrarReserva from "../pages/reservas/CadastrarReserva";
 import DetalheReserva from "../pages/reservas/DetalheReserva";
+import ListaPoliticasCancelamento from "../pages/reservas/ListaPoliticasCancelamento";
+import CadastrarPoliticaCancelamento from "../pages/reservas/CadastrarPoliticaCancelamento";
+import EditarPoliticaCancelamento from "../pages/reservas/EditarPoliticaCancelamento";
 
 export default function AppRoutes() {
   return (
@@ -28,6 +31,9 @@ export default function AppRoutes() {
         <Route path="/reservas" element={<ListaReservas />} />
         <Route path="/reservas/cadastrar" element={<CadastrarReserva />} />
         <Route path="/reservas/:id" element={<DetalheReserva />} />
+        <Route path="/politicas-cancelamento" element={<ListaPoliticasCancelamento />} />
+        <Route path="/politicas-cancelamento/cadastrar" element={<CadastrarPoliticaCancelamento />} />
+        <Route path="/politicas-cancelamento/editar/:id" element={<EditarPoliticaCancelamento />} />
         <Route path="/usuarios" element={<ListaUsuario />} />
         <Route path="/usuarios/cadastrar" element={<CadastrarUsuario />} />
         <Route path="/usuarios/editar/:id" element={<EditarUsuarios />} />
