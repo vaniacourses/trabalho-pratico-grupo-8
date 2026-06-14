@@ -12,7 +12,7 @@ Trabalho Prático da disciplina de Projeto de Software.
 Toda a documentação arquitetural, requisitos e diagramas estão detalhados no nosso Google Docs. O documento possui o histórico de versões ativo para avaliação da colaboração individual.
 👉 [Acessar a Documentação no Google Docs](https://docs.google.com/document/d/181WOAaErlYEC1vKGavw5lD9N4ANWoC7FzX2STPa0Duo/edit?usp=sharing)
 👉 [Acessar a Apresentação 1](https://docs.google.com/presentation/d/1oMWpnEu8gHx7TitTXF6soyuZTsaDj166sMiz69l0ujk/edit?usp=sharing)
-👉 [Acessar a Apresentação 2]([text](https://docs.google.com/presentation/d/17-AF0DnhGJIGMj8GHeP_3YMwovIAwrHGsMmcooAuF3k/edit?slide=id.g3ebf40d05a9_0_271#slide=id.g3ebf40d05a9_0_271))
+👉 [Acessar a Apresentação 2]((https://docs.google.com/presentation/d/17-AF0DnhGJIGMj8GHeP_3YMwovIAwrHGsMmcooAuF3k/edit?slide=id.g3ebf40d05a9_0_271#slide=id.g3ebf40d05a9_0_271))
 
 ---
 
