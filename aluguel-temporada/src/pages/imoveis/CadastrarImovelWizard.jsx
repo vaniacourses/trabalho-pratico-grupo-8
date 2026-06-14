@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ImovelBuilder from "../../builders/ImovelBuilder";
-import imovelService from "../../services/imovelService";
-import disponibilidadeService from "../../services/disponibilidadeService";
+import cadastrarImovelTransacao from "../../services/cadastrarImovelTransacao";
 import PassosDadosImovel from "../../components/imovel/PassosDadosImovel";
 import PassosDisponibilidade from "../../components/disponibilidade/PassosDisponibilidade";
 import PassosAtivarImovel from "../../components/imovel/PassosAtivarImovel";
@@ -10,65 +8,33 @@ import PassosAtivarImovel from "../../components/imovel/PassosAtivarImovel";
 function CadastrarImovelWizard() {
   const navigate = useNavigate();
   const [passoAtual, setPassoAtual] = useState(1);
-  const [imovelId, setImovelId] = useState(null);
   const [dadosImovel, setDadosImovel] = useState(null);
-  const [disponibilidades, setDisponibilidades] = useState([]);
+  const [periodos, setPeriodos] = useState([]);
+  const [salvando, setSalvando] = useState(false);
+  const [erro, setErro] = useState("");
 
-  const handleDadosImovelConcluido = async (dados) => {
-    try {
-      const imovel = new ImovelBuilder()
-        .setIdAnfitriao(dados.idAnfitriao)
-        .setTitulo(dados.titulo)
-        .setDescricao(dados.descricao)
-        .setEndereco(dados.endereco)
-        .setPrecoPorNoite(dados.precoPorNoite)
-        .setTipoImovel(dados.tipoImovel)
-        .setStatus("inativo")
-        .setRegras(dados.regras)
-        .setFotos(dados.fotos)
-        .setComodidades(dados.comodidades)
-        .build();
-
-      const criado = await imovelService.criar(imovel);
-      setImovelId(criado.id);
-      setDadosImovel(criado);
-      setPassoAtual(2);
-    } catch (error) {
-      alert(error.message);
-    }
+  const handleDadosImovelConcluido = (dados) => {
+    setDadosImovel(dados);
+    setPassoAtual(2);
   };
 
-  const handleDisponibilidadeConcluida = async (periodos) => {
-    try {
-      for (const periodo of periodos) {
-        await disponibilidadeService.criar({
-          idImovel: imovelId,
-          dataInicio: periodo.dataInicio,
-          dataFim: periodo.dataFim,
-          disponivel: periodo.disponivel,
-        });
-      }
-      setDisponibilidades(periodos);
-      setPassoAtual(3);
-    } catch (error) {
-      alert(error.message);
-    }
+  const handleDisponibilidadeConcluida = (periodosColetados) => {
+    setPeriodos(periodosColetados);
+    setPassoAtual(3);
   };
 
-  const handleAtivarImovel = async () => {
+  const finalizarCadastro = async (status) => {
+    setErro("");
+    setSalvando(true);
+
     try {
-      await imovelService.atualizar(imovelId, {
-        ...dadosImovel,
-        status: "ativo",
-      });
+      await cadastrarImovelTransacao(dadosImovel, periodos, status);
       navigate("/imoveis");
     } catch (error) {
-      alert(error.message);
+      setErro(error.message);
+    } finally {
+      setSalvando(false);
     }
-  };
-
-  const handleMaterInativo = () => {
-    navigate("/imoveis");
   };
 
   const passos = [
@@ -123,9 +89,11 @@ function CadastrarImovelWizard() {
       {passoAtual === 3 && (
         <PassosAtivarImovel
           imovel={dadosImovel}
-          disponibilidades={disponibilidades}
-          onAtivar={handleAtivarImovel}
-          onMaterInativo={handleMaterInativo}
+          disponibilidades={periodos}
+          erro={erro}
+          salvando={salvando}
+          onAtivar={() => finalizarCadastro("ativo")}
+          onManterInativo={() => finalizarCadastro("inativo")}
         />
       )}
     </div>

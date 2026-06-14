@@ -1,7 +1,14 @@
 import { CheckCircle, Clock, Calendar, MapPin, Tag } from "lucide-react";
 import COMODIDADES from "../../utils/comodidades";
 
-function PassosAtivarImovel({ imovel, disponibilidades, onAtivar, onMaterInativo }) {
+function PassosAtivarImovel({
+  imovel,
+  disponibilidades,
+  erro,
+  salvando,
+  onAtivar,
+  onManterInativo,
+}) {
   const comodidadesDoImovel = COMODIDADES.filter((c) =>
     imovel?.comodidades?.includes(c.id)
   );
@@ -14,8 +21,16 @@ function PassosAtivarImovel({ imovel, disponibilidades, onAtivar, onMaterInativo
     <div>
       <h2 className="text-xl font-bold text-gray-800 mb-2">Ativar Anúncio</h2>
       <p className="text-sm text-gray-500 mb-6">
-        Revise as informações do seu imóvel antes de ativá-lo na plataforma.
+        Revise as informações do seu imóvel. Ao confirmar, o imóvel e os
+        períodos de disponibilidade serão salvos juntos — caso algo falhe,
+        nada será gravado.
       </p>
+
+      {erro && (
+        <div className="bg-red-100 text-red-700 px-4 py-2 rounded-lg mb-4 text-sm">
+          {erro}
+        </div>
+      )}
 
       {/* Resumo do imóvel */}
       <div className="bg-gray-50 rounded-xl p-4 flex flex-col gap-3 mb-6">
@@ -62,7 +77,7 @@ function PassosAtivarImovel({ imovel, disponibilidades, onAtivar, onMaterInativo
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
               <Calendar size={14} />
-              <span>Períodos cadastrados:</span>
+              <span>Períodos a cadastrar:</span>
             </div>
             {disponibilidades.map((p, index) => (
               <div key={index} className="flex items-center gap-2 text-sm text-gray-600 ml-5">
@@ -86,7 +101,7 @@ function PassosAtivarImovel({ imovel, disponibilidades, onAtivar, onMaterInativo
         {disponibilidades.length === 0 && (
           <div className="flex items-center gap-2 text-sm text-yellow-600 bg-yellow-50 px-3 py-2 rounded-lg">
             <Clock size={14} />
-            Nenhuma disponibilidade cadastrada. O imóvel ficará inativo até que você adicione períodos.
+            Nenhuma disponibilidade cadastrada. O imóvel ficará sem períodos até que você adicione.
           </div>
         )}
       </div>
@@ -95,16 +110,18 @@ function PassosAtivarImovel({ imovel, disponibilidades, onAtivar, onMaterInativo
       <div className="flex flex-col gap-3">
         <button
           onClick={onAtivar}
-          className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-sm font-medium"
+          disabled={salvando}
+          className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg text-sm font-medium"
         >
           <CheckCircle size={18} />
-          Ativar Anúncio Agora
+          {salvando ? "Salvando..." : "Ativar Anúncio Agora"}
         </button>
         <button
-          onClick={onMaterInativo}
-          className="bg-gray-100 hover:bg-gray-200 text-gray-600 px-6 py-3 rounded-lg text-sm"
+          onClick={onManterInativo}
+          disabled={salvando}
+          className="bg-gray-100 hover:bg-gray-200 disabled:bg-gray-50 disabled:cursor-not-allowed text-gray-600 px-6 py-3 rounded-lg text-sm"
         >
-          Salvar como Inativo por Enquanto
+          {salvando ? "Salvando..." : "Salvar como Inativo por Enquanto"}
         </button>
       </div>
     </div>

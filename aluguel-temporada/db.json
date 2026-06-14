@@ -140,6 +140,13 @@
       "dataFim": "2026-07-25T03:00:00.000Z",
       "disponivel": false,
       "id": "-IGcwNKofVE"
+    },
+    {
+      "idImovel": "2HhZyV_tg98",
+      "dataInicio": "2026-06-14T03:00:00.000Z",
+      "dataFim": "2026-06-16T03:00:00.000Z",
+      "disponivel": true,
+      "id": "B9D6yaiz9q4"
     }
   ],
   "usuarios": [
