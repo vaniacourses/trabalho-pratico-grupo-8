@@ -160,6 +160,51 @@
       "id": "gQP7eCawXxw"
     }
   ],
+<<<<<<< HEAD
+  
+  "avaliacoes_imovel": [
+    {
+      "id": "av-imovel-1",
+      "imovelId": "xGfD1DC45yc",
+      "hospedeId": "gQP7eCawXxw",
+      "nota": 5,
+      "categorias": {
+        "limpeza": 5,
+        "localizacao": 4,
+        "custo": 5,
+        "comunicacao": 4
+      },
+      "comentario": "Ótima estadia, imóvel exatamente como descrito!",
+      "data": "2026-06-10T10:00:00.000Z"
+    }
+  ],
+
+  "avaliacoes_hospede": [
+    {
+      "id": "av-hospede-1",
+      "hospedeId": "gQP7eCawXxw",
+      "anfitriaoId": "1",
+      "nota": 5,
+      "comentario": "Hóspede excelente, deixou o imóvel impecável.",
+      "data": "2026-06-11T10:00:00.000Z"
+    }
+  ],
+
+  "denuncias": [
+    {
+      "id": "den-1",
+      "imovelId": "xGfD1DC45yc",
+      "usuarioId": "gQP7eCawXxw",
+      "tipo": "Anúncio falso ou enganoso",
+      "tags": ["Fotos enganosas"],
+      "descricao": "As fotos não condizem com o imóvel real.",
+      "status": "Em análise",
+      "data": "2026-06-12T10:00:00.000Z"
+    }
+  ], 
+
+
+=======
   "pagamentos": [
     {
       "id": "pag_pix_001",
@@ -222,5 +267,6 @@
     }
   ],
   "politicasCancelamento": [],
+>>>>>>> main
   "$schema": "./node_modules/json-server/schema.json"
 }
