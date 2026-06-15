@@ -199,5 +199,28 @@
       "idTransacaoExterna": null
     }
   ],
+  "reservas": [
+    {
+      "id": "FM7fUOVpGtI",
+      "idImovel": "xGfD1DC45yc",
+      "idHospede": "gQP7eCawXxw",
+      "dataEntrada": "2026-07-10T00:00:00.000Z",
+      "dataSaida": "2026-07-15T00:00:00.000Z",
+      "valorTotal": 604.9499999999999,
+      "dataSolicitacao": "2026-06-14T14:43:18.855Z",
+      "status": "AguardandoPagamento"
+    },
+    {
+      "idImovel": "xGfD1DC45yc",
+      "idHospede": "gQP7eCawXxw",
+      "dataEntrada": "2026-06-13T00:00:00.000Z",
+      "dataSaida": "2026-06-16T00:00:00.000Z",
+      "valorTotal": 362.96999999999997,
+      "status": "Pendente",
+      "dataSolicitacao": "2026-06-14T15:40:12.550Z",
+      "id": "qbjRSvZjUCo"
+    }
+  ],
+  "politicasCancelamento": [],
   "$schema": "./node_modules/json-server/schema.json"
 }
