@@ -2,12 +2,18 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AvaliacaoHospede from "../../templates/AvaliacaoHospede";
 import AvaliacaoAnfitriao from "../../templates/AvaliacaoAnfitriao";
+import { useSearchParams } from "react-router-dom";
 
 function CadastrarAvaliacao() {
 
   const navigate = useNavigate();
   const [erro, setErro] = useState("");
   const [tipo, setTipo] = useState("hospede");
+  const [searchParams] = useSearchParams();
+  const tipoInicial = searchParams.get("tipo") || "hospede";
+  const imovelIdInicial = searchParams.get("imovelId") || "";
+  const hospedeIdInicial = searchParams.get("hospedeId") || "";
+  
 
   const [form, setForm] = useState({
     imovelId: "",

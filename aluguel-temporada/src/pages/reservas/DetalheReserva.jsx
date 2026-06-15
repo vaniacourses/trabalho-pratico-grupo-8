@@ -195,6 +195,16 @@ function DetalheReserva() {
           Nenhuma ação disponível neste estado.
         </p>
       )}
+      {reserva.status === "Finalizada" && (
+        <div className="mt-4 border-t pt-4 flex justify-end">
+          <button  
+            onClick={() => navigate(`/avaliacoes/cadastrar?tipo=anfitriao&hospedeId=${reserva.idHospede}`)}  
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
+          >  
+            Avaliar hóspede
+          </button>
+        </div>
+      )}
     </div>
   );
 }
