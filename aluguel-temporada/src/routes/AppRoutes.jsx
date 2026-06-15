@@ -9,6 +9,11 @@ import EditarDisponibilidade from "../pages/disponibilidades/EditarDisponibilida
 import ListaUsuario from "../pages/usuarios/ListaUsuario";
 import CadastrarUsuario from "../pages/usuarios/CadastrarUsuario";
 import EditarUsuarios from "../pages/usuarios/EditarUsuarios";
+import ListaAvaliacoes from "../pages/avaliacoes/ListaAvaliacoes";
+import CadastrarAvaliacao from "../pages/avaliacoes/CadastrarAvaliacao";
+import EditarAvaliacao from "../pages/avaliacoes/EditarAvaliacao";
+import CadastrarDenuncia from "../pages/denuncias/CadastrarDenuncia";
+import RelatorioImovel from "../pages/relatorios/RelatorioImovel";
 
 export default function AppRoutes() {
   return (
@@ -22,9 +27,14 @@ export default function AppRoutes() {
         <Route path="/imoveis/:idImovel/disponibilidades" element={<ListaDisponibilidades />} />
         <Route path="/imoveis/:idImovel/disponibilidades/cadastrar" element={<CadastrarDisponibilidade />} />
         <Route path="/imoveis/:idImovel/disponibilidades/editar/:id" element={<EditarDisponibilidade />} />
-        <Route path="/usuarios" element={<ListaUsuario />} />s
+        <Route path="/usuarios" element={<ListaUsuario />} />
         <Route path="/usuarios/cadastrar" element={<CadastrarUsuario />} />
         <Route path="/usuarios/editar/:id" element={<EditarUsuarios />} />
+        <Route path="/avaliacoes" element={<ListaAvaliacoes />} />
+        <Route path="/avaliacoes/cadastrar" element={<CadastrarAvaliacao />} />
+        <Route path="/avaliacoes/editar/:id" element={<EditarAvaliacao />} />
+        <Route path="/denuncias/cadastrar" element={<CadastrarDenuncia />} />
+        <Route path="/relatorios/:imovelId" element={<RelatorioImovel />} />
       </Routes>
     </BrowserRouter>
   );
