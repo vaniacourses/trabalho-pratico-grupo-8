@@ -136,7 +136,9 @@ const pagamentoService = {
         dataPagamento: new Date().toISOString(),
         idTransacaoExterna: null,
       });
-      throw new Error(`Falha no processamento: ${error.message}`);
+      throw new Error(`Falha no processamento: ${error.message}`, {
+        cause: error,
+      });
     }
 
     // ETAPA 4 — Persistir o Pagamento no banco local

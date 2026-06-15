@@ -41,7 +41,7 @@ class PagamentoStrategy {
    * @param {Object} dadosPagamento - Dados necessários para o processamento.
    * @returns {Promise<Object>} Resultado com idTransacaoExterna e status.
    */
-  async processar(dadosPagamento) {
+  async processar() {
     throw new Error(
       `${this.constructor.name} deve implementar o método processar().`
     );
@@ -52,7 +52,7 @@ class PagamentoStrategy {
    * @param {string} idTransacaoExterna - ID retornado pela API externa.
    * @returns {Promise<Object>} Resultado do reembolso.
    */
-  async reembolsar(idTransacaoExterna) {
+  async reembolsar() {
     throw new Error(
       `${this.constructor.name} deve implementar o método reembolsar().`
     );
@@ -63,7 +63,7 @@ class PagamentoStrategy {
    * @param {string} idTransacaoExterna - ID retornado pela API externa.
    * @returns {Promise<Object>} Status atual da transação.
    */
-  async consultarStatus(idTransacaoExterna) {
+  async consultarStatus() {
     throw new Error(
       `${this.constructor.name} deve implementar o método consultarStatus().`
     );

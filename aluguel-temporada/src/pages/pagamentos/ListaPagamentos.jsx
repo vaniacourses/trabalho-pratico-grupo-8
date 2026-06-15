@@ -34,7 +34,19 @@ function ListaPagamentos() {
   };
 
   useEffect(() => {
-    carregarPagamentos();
+    const carregar = async () => {
+      try {
+        setCarregando(true);
+        const data = await pagamentoService.listar();
+        setPagamentos(data);
+      } catch {
+        setErro("Erro ao carregar pagamentos. Verifique se o servidor está rodando.");
+      } finally {
+        setCarregando(false);
+      }
+    };
+
+    carregar();
   }, []);
 
   const handleReembolsar = async (id) => {
