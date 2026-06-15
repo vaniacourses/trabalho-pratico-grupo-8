@@ -9,6 +9,9 @@ import EditarDisponibilidade from "../pages/disponibilidades/EditarDisponibilida
 import ListaUsuario from "../pages/usuarios/ListaUsuario";
 import CadastrarUsuario from "../pages/usuarios/CadastrarUsuario";
 import EditarUsuarios from "../pages/usuarios/EditarUsuarios";
+import ListaPagamentos from "../pages/pagamentos/ListaPagamentos";
+import ProcessarPagamento from "../pages/pagamentos/ProcessarPagamento";
+import DetalhesPagamento from "../pages/pagamentos/DetalhesPagamento";
 import ListaReservas from "../pages/reservas/ListaReservas";
 import CadastrarReserva from "../pages/reservas/CadastrarReserva";
 import DetalheReserva from "../pages/reservas/DetalheReserva";
@@ -37,6 +40,9 @@ export default function AppRoutes() {
         <Route path="/usuarios" element={<ListaUsuario />} />
         <Route path="/usuarios/cadastrar" element={<CadastrarUsuario />} />
         <Route path="/usuarios/editar/:id" element={<EditarUsuarios />} />
+        <Route path="/pagamentos" element={<ListaPagamentos />} />
+        <Route path="/pagamentos/processar" element={<ProcessarPagamento />} />
+        <Route path="/pagamentos/:id" element={<DetalhesPagamento />} />
       </Routes>
     </BrowserRouter>
   );
