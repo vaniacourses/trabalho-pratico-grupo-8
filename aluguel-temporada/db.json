@@ -140,6 +140,13 @@
       "dataFim": "2026-07-25T03:00:00.000Z",
       "disponivel": false,
       "id": "-IGcwNKofVE"
+    },
+    {
+      "idImovel": "2HhZyV_tg98",
+      "dataInicio": "2026-06-14T03:00:00.000Z",
+      "dataFim": "2026-06-16T03:00:00.000Z",
+      "disponivel": true,
+      "id": "B9D6yaiz9q4"
     }
   ],
   "usuarios": [
@@ -153,6 +160,7 @@
       "id": "gQP7eCawXxw"
     }
   ],
+<<<<<<< HEAD
   
   "avaliacoes_imovel": [
     {
@@ -196,5 +204,69 @@
   ], 
 
 
+=======
+  "pagamentos": [
+    {
+      "id": "pag_pix_001",
+      "idReserva": "reserva_confirmada_001",
+      "valor": 480,
+      "metodo": "pix",
+      "status": "aprovado",
+      "dataPagamento": "2026-06-14T14:30:00.000Z",
+      "idTransacaoExterna": "TXN-PIX-1781457000000-A1B2C3D4E"
+    },
+    {
+      "id": "pag_cartao_001",
+      "idReserva": "reserva_confirmada_002",
+      "valor": 1250.5,
+      "metodo": "cartao_credito",
+      "status": "aprovado",
+      "dataPagamento": "2026-06-14T16:10:00.000Z",
+      "idTransacaoExterna": "TXN-CARTAO_CREDITO-1781463000000-F5G6H7I8J"
+    },
+    {
+      "id": "pag_boleto_001",
+      "idReserva": "reserva_confirmada_003",
+      "valor": 650,
+      "metodo": "boleto",
+      "status": "pendente",
+      "dataPagamento": "2026-06-14T18:45:00.000Z",
+      "idTransacaoExterna": "TXN-BOLETO-1781472300000-K9L0M1N2O",
+      "codigoBarras": "34191790010104351004791020150008291070000065000"
+    },
+    {
+      "id": "pag_recusado_001",
+      "idReserva": "reserva_confirmada_004",
+      "valor": 320,
+      "metodo": "cartao_credito",
+      "status": "recusado",
+      "dataPagamento": "2026-06-14T19:20:00.000Z",
+      "idTransacaoExterna": null
+    }
+  ],
+  "reservas": [
+    {
+      "id": "FM7fUOVpGtI",
+      "idImovel": "xGfD1DC45yc",
+      "idHospede": "gQP7eCawXxw",
+      "dataEntrada": "2026-07-10T00:00:00.000Z",
+      "dataSaida": "2026-07-15T00:00:00.000Z",
+      "valorTotal": 604.9499999999999,
+      "dataSolicitacao": "2026-06-14T14:43:18.855Z",
+      "status": "AguardandoPagamento"
+    },
+    {
+      "idImovel": "xGfD1DC45yc",
+      "idHospede": "gQP7eCawXxw",
+      "dataEntrada": "2026-06-13T00:00:00.000Z",
+      "dataSaida": "2026-06-16T00:00:00.000Z",
+      "valorTotal": 362.96999999999997,
+      "status": "Pendente",
+      "dataSolicitacao": "2026-06-14T15:40:12.550Z",
+      "id": "qbjRSvZjUCo"
+    }
+  ],
+  "politicasCancelamento": [],
+>>>>>>> main
   "$schema": "./node_modules/json-server/schema.json"
 }
