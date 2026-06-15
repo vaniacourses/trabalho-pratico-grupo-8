@@ -26,14 +26,7 @@
           "ordem": 3
         }
       ],
-      "comodidades": [
-        1,
-        3,
-        5,
-        7,
-        2,
-        8
-      ],
+      "comodidades": [1, 3, 5, 7, 2, 8],
       "id": "xGfD1DC45yc"
     },
     {
@@ -53,14 +46,7 @@
           "ordem": 1
         }
       ],
-      "comodidades": [
-        1,
-        3,
-        5,
-        7,
-        2,
-        8
-      ],
+      "comodidades": [1, 3, 5, 7, 2, 8],
       "id": "2HhZyV_tg98"
     },
     {
@@ -92,16 +78,7 @@
           "ordem": 3
         }
       ],
-      "comodidades": [
-        1,
-        3,
-        7,
-        5,
-        8,
-        6,
-        4,
-        2
-      ],
+      "comodidades": [1, 3, 7, 5, 8, 6, 4, 2],
       "id": "7v7oUBrGvFQ"
     }
   ],
@@ -160,51 +137,29 @@
       "id": "gQP7eCawXxw"
     }
   ],
-<<<<<<< HEAD
-  
-  "avaliacoes_imovel": [
+  "reservas": [
     {
-      "id": "av-imovel-1",
-      "imovelId": "xGfD1DC45yc",
-      "hospedeId": "gQP7eCawXxw",
-      "nota": 5,
-      "categorias": {
-        "limpeza": 5,
-        "localizacao": 4,
-        "custo": 5,
-        "comunicacao": 4
-      },
-      "comentario": "Ótima estadia, imóvel exatamente como descrito!",
-      "data": "2026-06-10T10:00:00.000Z"
+      "id": "FM7fUOVpGtI",
+      "idImovel": "xGfD1DC45yc",
+      "idHospede": "gQP7eCawXxw",
+      "dataEntrada": "2026-07-10T00:00:00.000Z",
+      "dataSaida": "2026-07-15T00:00:00.000Z",
+      "valorTotal": 604.95,
+      "dataSolicitacao": "2026-06-14T14:43:18.855Z",
+      "status": "AguardandoPagamento"
+    },
+    {
+      "idImovel": "xGfD1DC45yc",
+      "idHospede": "gQP7eCawXxw",
+      "dataEntrada": "2026-06-13T00:00:00.000Z",
+      "dataSaida": "2026-06-16T00:00:00.000Z",
+      "valorTotal": 362.97,
+      "status": "Pendente",
+      "dataSolicitacao": "2026-06-14T15:40:12.550Z",
+      "id": "qbjRSvZjUCo"
     }
   ],
-
-  "avaliacoes_hospede": [
-    {
-      "id": "av-hospede-1",
-      "hospedeId": "gQP7eCawXxw",
-      "anfitriaoId": "1",
-      "nota": 5,
-      "comentario": "Hóspede excelente, deixou o imóvel impecável.",
-      "data": "2026-06-11T10:00:00.000Z"
-    }
-  ],
-
-  "denuncias": [
-    {
-      "id": "den-1",
-      "imovelId": "xGfD1DC45yc",
-      "usuarioId": "gQP7eCawXxw",
-      "tipo": "Anúncio falso ou enganoso",
-      "tags": ["Fotos enganosas"],
-      "descricao": "As fotos não condizem com o imóvel real.",
-      "status": "Em análise",
-      "data": "2026-06-12T10:00:00.000Z"
-    }
-  ], 
-
-
-=======
+  "politicasCancelamento": [],
   "pagamentos": [
     {
       "id": "pag_pix_001",
@@ -244,29 +199,43 @@
       "idTransacaoExterna": null
     }
   ],
-  "reservas": [
+  "avaliacoes_imovel": [
     {
-      "id": "FM7fUOVpGtI",
-      "idImovel": "xGfD1DC45yc",
-      "idHospede": "gQP7eCawXxw",
-      "dataEntrada": "2026-07-10T00:00:00.000Z",
-      "dataSaida": "2026-07-15T00:00:00.000Z",
-      "valorTotal": 604.9499999999999,
-      "dataSolicitacao": "2026-06-14T14:43:18.855Z",
-      "status": "AguardandoPagamento"
-    },
-    {
-      "idImovel": "xGfD1DC45yc",
-      "idHospede": "gQP7eCawXxw",
-      "dataEntrada": "2026-06-13T00:00:00.000Z",
-      "dataSaida": "2026-06-16T00:00:00.000Z",
-      "valorTotal": 362.96999999999997,
-      "status": "Pendente",
-      "dataSolicitacao": "2026-06-14T15:40:12.550Z",
-      "id": "qbjRSvZjUCo"
+      "id": "av-imovel-1",
+      "imovelId": "xGfD1DC45yc",
+      "hospedeId": "gQP7eCawXxw",
+      "nota": 5,
+      "categorias": {
+        "limpeza": 5,
+        "localizacao": 4,
+        "custo": 5,
+        "comunicacao": 4
+      },
+      "comentario": "Ótima estadia, imóvel exatamente como descrito!",
+      "data": "2026-06-10T10:00:00.000Z"
     }
   ],
-  "politicasCancelamento": [],
->>>>>>> main
+  "avaliacoes_hospede": [
+    {
+      "id": "av-hospede-1",
+      "hospedeId": "gQP7eCawXxw",
+      "anfitriaoId": "1",
+      "nota": 5,
+      "comentario": "Hóspede excelente, deixou o imóvel impecável.",
+      "data": "2026-06-11T10:00:00.000Z"
+    }
+  ],
+  "denuncias": [
+    {
+      "id": "den-1",
+      "imovelId": "xGfD1DC45yc",
+      "usuarioId": "gQP7eCawXxw",
+      "tipo": "Anúncio falso ou enganoso",
+      "tags": ["Fotos enganosas"],
+      "descricao": "As fotos não condizem com o imóvel real.",
+      "status": "Em análise",
+      "data": "2026-06-12T10:00:00.000Z"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
