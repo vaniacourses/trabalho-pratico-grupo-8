@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Home, User, CalendarCheck, CalendarX, DollarSign, ArrowLeft } from "lucide-react";
 import Reserva from "../../models/Reserva";
+import PoliticaCancelamento from "../../models/PoliticaCancelamento";
 import reservaService from "../../services/reservaService";
 import imovelService from "../../services/imovelService";
 import usuarioService from "../../services/usuarioService";
+import politicaCancelamentoService from "../../services/politicaCancelamentoService";
 import { STATUS_ESTILO, STATUS_LABEL, ACOES_CONFIG, formatarData, formatarValor } from "../../utils/reservaUtils";
 
 function DetalheReserva() {
@@ -13,6 +15,8 @@ function DetalheReserva() {
   const [reserva, setReserva] = useState(null);
   const [imovel, setImovel] = useState(null);
   const [hospede, setHospede] = useState(null);
+  const [politica, setPolitica] = useState(null);
+  const [confirmacaoCancelamento, setConfirmacaoCancelamento] = useState(null);
   const [erro, setErro] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -23,13 +27,19 @@ function DetalheReserva() {
         const reservaObj = new Reserva(dados);
         setReserva(reservaObj);
 
-        const [imovelData, hospedaData] = await Promise.all([
+        const carregas = [
           imovelService.buscarPorId(dados.idImovel),
           usuarioService.buscarPorId(dados.idHospede),
-        ]);
+        ];
+        if (dados.idPoliticaCancelamento) {
+          carregas.push(politicaCancelamentoService.buscarPorId(dados.idPoliticaCancelamento));
+        }
+
+        const [imovelData, hospedaData, politicaData] = await Promise.all(carregas);
         setImovel(imovelData);
         setHospede(hospedaData);
-      } catch (error) {
+        if (politicaData) setPolitica(new PoliticaCancelamento(politicaData));
+      } catch {
         setErro("Erro ao carregar reserva.");
       } finally {
         setLoading(false);
@@ -40,10 +50,28 @@ function DetalheReserva() {
 
   const executarAcao = async (nomeAcao) => {
     setErro("");
+
+    if (nomeAcao === "cancelarReserva" && reserva.status === "Paga" && politica) {
+      setConfirmacaoCancelamento(politica.calcularReembolso(reserva));
+      return;
+    }
+
     try {
       reserva[nomeAcao]();
       await reservaService.atualizar(reserva.id, reserva.toJSON());
       setReserva(new Reserva(reserva.toJSON()));
+    } catch (error) {
+      setErro(error.message);
+    }
+  };
+
+  const confirmarCancelamento = async () => {
+    try {
+      reserva.cancelarReserva();
+      const dados = { ...reserva.toJSON(), valorReembolso: confirmacaoCancelamento.valorReembolso };
+      await reservaService.atualizar(reserva.id, dados);
+      setReserva(new Reserva(dados));
+      setConfirmacaoCancelamento(null);
     } catch (error) {
       setErro(error.message);
     }
@@ -109,7 +137,40 @@ function DetalheReserva() {
         </p>
       </div>
 
-      {acoes.length > 0 && (
+      {confirmacaoCancelamento && (
+        <div className="mt-6 border rounded-lg p-4 bg-orange-50 border-orange-200 flex flex-col gap-3">
+          <p className="text-sm font-semibold text-orange-800">Política de cancelamento aplicável</p>
+          <p className="text-sm text-orange-700">
+            {confirmacaoCancelamento.diasRestantes} dia(s) até a entrada.
+          </p>
+          {confirmacaoCancelamento.temDireito ? (
+            <p className="text-sm text-green-700 font-medium">
+              Você tem direito a reembolso de{" "}
+              <span className="font-bold">{formatarValor(confirmacaoCancelamento.valorReembolso)}</span>.
+            </p>
+          ) : (
+            <p className="text-sm text-red-700 font-medium">
+              Cancelamento fora do prazo — sem direito a reembolso.
+            </p>
+          )}
+          <div className="flex gap-2 mt-1">
+            <button
+              onClick={confirmarCancelamento}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
+            >
+              Confirmar cancelamento
+            </button>
+            <button
+              onClick={() => setConfirmacaoCancelamento(null)}
+              className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm"
+            >
+              Voltar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {!confirmacaoCancelamento && acoes.length > 0 && (
         <div className="mt-6">
           <p className="text-sm text-gray-500 mb-3">Ações disponíveis neste estado:</p>
           <div className="flex flex-wrap gap-3">
@@ -129,7 +190,7 @@ function DetalheReserva() {
         </div>
       )}
 
-      {acoes.length === 0 && (
+      {!confirmacaoCancelamento && acoes.length === 0 && (
         <p className="mt-6 text-sm text-gray-400 text-center">
           Nenhuma ação disponível neste estado.
         </p>
