@@ -61,13 +61,11 @@ function EditarAvaliacao() {
     setErro("");
 
     try {
-      // validações básicas iguais para os dois tipos
       if (!form.nota) throw new Error("Nota é obrigatória.");
       if (!form.comentario) throw new Error("Comentário é obrigatório.");
       if (form.comentario.length < 20)
         throw new Error("Comentário deve ter no mínimo 20 caracteres.");
 
-      // salva na coleção certa dependendo do tipo
       if (tipo === "hospede") {
         await avaliacaoService.atualizarAvaliacaoImovel(id, form);
       } else {

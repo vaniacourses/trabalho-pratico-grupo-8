@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import avaliacaoService from "../../services/avaliacaoService";
+import AvaliacaoCard from "../../components/avaliacao/AvaliacaoCard";
 
 function ListaAvaliacoes() {
   const [avaliacoesImovel, setAvaliacoesImovel] = useState([]);
@@ -12,8 +13,6 @@ function ListaAvaliacoes() {
   useEffect(() => {
     const carregar = async () => {
       try {
-        // busca as duas coleções ao mesmo tempo
-        // o Promise.all espera as duas terminarem antes de continuar
         const [imovel, hospede] = await Promise.all([
           avaliacaoService.listarPorImovel(""),
           avaliacaoService.listarPorHospede(""),
@@ -65,7 +64,7 @@ function ListaAvaliacoes() {
         </button>
       </div>
 
-      {/* lista de avaliações de imóvel */}
+      {/* avaliações de imóveis */}
       <h2 className="text-lg font-semibold text-gray-700 mb-3">
         Avaliações de Imóveis
       </h2>
@@ -74,38 +73,19 @@ function ListaAvaliacoes() {
           Nenhuma avaliação de imóvel cadastrada.
         </p>
       ) : (
-        <div className="flex flex-col gap-3 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {avaliacoesImovel.map((av) => (
-            <div
+            <AvaliacaoCard
               key={av.id}
-              className="border rounded-lg px-4 py-3 flex justify-between items-start"
-            >
-              <div>
-                <p className="text-sm font-medium text-gray-800">
-                  Imóvel: {av.imovelId} — Nota: {av.nota}/5
-                </p>
-                <p className="text-sm text-gray-500">{av.comentario}</p>
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => navigate(`/avaliacoes/editar/${av.id}`)}
-                  className="text-sm text-blue-600 hover:underline"
-                >
-                  Editar
-                </button>
-                <button
-                  onClick={() => handleExcluirImovel(av.id)}
-                  className="text-sm text-red-500 hover:underline"
-                >
-                  Excluir
-                </button>
-              </div>
-            </div>
+              avaliacao={av}
+              tipo="hospede"
+              onExcluir={handleExcluirImovel}
+            />
           ))}
         </div>
       )}
 
-      {/* lista de avaliações de hóspede */}
+      {/* avaliações de hóspedes */}
       <h2 className="text-lg font-semibold text-gray-700 mb-3">
         Avaliações de Hóspedes
       </h2>
@@ -114,33 +94,14 @@ function ListaAvaliacoes() {
           Nenhuma avaliação de hóspede cadastrada.
         </p>
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {avaliacoesHospede.map((av) => (
-            <div
+            <AvaliacaoCard
               key={av.id}
-              className="border rounded-lg px-4 py-3 flex justify-between items-start"
-            >
-              <div>
-                <p className="text-sm font-medium text-gray-800">
-                  Hóspede: {av.hospedeId} — Nota: {av.nota}/5
-                </p>
-                <p className="text-sm text-gray-500">{av.comentario}</p>
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => navigate(`/avaliacoes/editar/${av.id}`)}
-                  className="text-sm text-blue-600 hover:underline"
-                >
-                  Editar
-                </button>
-                <button
-                  onClick={() => handleExcluirHospede(av.id)}
-                  className="text-sm text-red-500 hover:underline"
-                >
-                  Excluir
-                </button>
-              </div>
-            </div>
+              avaliacao={av}
+              tipo="anfitriao"
+              onExcluir={handleExcluirHospede}
+            />
           ))}
         </div>
       )}

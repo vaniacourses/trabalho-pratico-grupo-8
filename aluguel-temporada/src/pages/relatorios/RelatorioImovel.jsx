@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import avaliacaoService from "../../services/avaliacaoService";
 
 function RelatorioImovel() {
-  // pega o imovelId da URL — ex: /relatorios/xGfD1DC45yc
+
   const { imovelId } = useParams();
   const [avaliacoes, setAvaliacoes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,14 +26,12 @@ function RelatorioImovel() {
 
   // ── funções de cálculo ──
 
-  // soma todas as notas e divide pelo total
   const calcularMedia = () => {
     if (avaliacoes.length === 0) return 0;
     const soma = avaliacoes.reduce((acc, av) => acc + av.nota, 0);
     return (soma / avaliacoes.length).toFixed(1);
   };
 
-  // calcula a média de cada categoria separadamente
   const calcularMediaCategorias = () => {
     if (avaliacoes.length === 0) return {};
     const cats = ["limpeza", "localizacao", "custo", "comunicacao"];

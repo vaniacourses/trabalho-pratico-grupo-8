@@ -31,11 +31,9 @@ function CadastrarDenuncia() {
     usuarioId: "",
     tipo: "",
     descricao: "",
-    status: "Em análise", // sempre começa como "Em análise"
+    status: "Em análise", 
   });
 
-  // tags são uma lista separada pois funcionam diferente
-  // o usuário pode selecionar várias ao mesmo tempo
   const [tagsSelecionadas, setTagsSelecionadas] = useState([]);
 
   const handleChange = (e) => {
@@ -135,7 +133,7 @@ function CadastrarDenuncia() {
             {TAGS_DISPONIVEIS.map((tag) => (
               <button
                 key={tag}
-                type="button" // importante: evita submeter o form ao clicar
+                type="button" 
                 onClick={() => handleTag(tag)}
                 className={`px-3 py-1 rounded-full text-sm border transition-colors ${
                   tagsSelecionadas.includes(tag)
