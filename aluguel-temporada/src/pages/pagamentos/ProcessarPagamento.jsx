@@ -3,14 +3,14 @@
  *
  * Esta é a página mais importante do módulo de pagamentos. Ela implementa o
  * caso de uso transacional UC15, conforme descrito na documentação:
- * "O hóspede inicia o pagamento de uma reserva confirmada, e a plataforma
+ * "O hóspede inicia o pagamento de uma reserva aguardando pagamento, e a plataforma
  * aciona a API externa de pagamentos para processar a transação."
  *
  * FLUXO TRANSACIONAL (ou tudo ocorre ou nada é persistido):
  * 1. Usuário informa o ID da reserva e escolhe o método de pagamento
  * 2. Formulário específico do método é exibido (Strategy visível na UI)
  * 3. Ao confirmar, o pagamentoService.processar() é chamado, que:
- *    a. Valida a reserva (status "confirmada")
+ *    a. Valida a reserva (status "AguardandoPagamento")
  *    b. Verifica ausência de pagamento duplicado
  *    c. Delega à estratégia correta (GoF Strategy)
  *    d. Persiste o pagamento
@@ -29,10 +29,11 @@
  * e o pagamentoService sem conter regras de negócio.
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CreditCard, Loader } from "lucide-react";
 import pagamentoService from "../../services/pagamentoService";
+import reservaService from "../../services/reservaService";
 
 
 // SUB-COMPONENTES — Formulários específicos por método de pagamento
@@ -156,6 +157,7 @@ function ProcessarPagamento() {
 
   // Estado principal do formulário
   const [idReserva, setIdReserva] = useState("");
+  const [reservas, setReservas] = useState([]);
   const [metodo, setMetodo] = useState("pix");
   const [dadosEspecificos, setDadosEspecificos] = useState({});
 
@@ -165,6 +167,21 @@ function ProcessarPagamento() {
 
   // Métodos disponíveis vindos da StrategyFactory (via serviço)
   const metodosDisponiveis = pagamentoService.listarMetodosDisponiveis();
+
+  useEffect(() => {
+    const carregarReservas = async () => {
+      try {
+        const data = await reservaService.listar();
+        setReservas(
+          data.filter((reserva) => reserva.status === "AguardandoPagamento")
+        );
+      } catch {
+        setErro("Erro ao carregar reservas disponíveis para pagamento.");
+      }
+    };
+
+    carregarReservas();
+  }, []);
 
   const handleDadosChange = (e) => {
     setDadosEspecificos({ ...dadosEspecificos, [e.target.name]: e.target.value });
@@ -255,14 +272,26 @@ function ProcessarPagamento() {
           <label className="text-sm font-medium text-gray-700">
             ID da Reserva
           </label>
+          <select
+            value={idReserva}
+            onChange={(e) => setIdReserva(e.target.value)}
+            className="border rounded-lg px-4 py-2 text-sm font-mono"
+          >
+            <option value="">Selecione uma reserva aguardando pagamento</option>
+            {reservas.map((reserva) => (
+              <option key={reserva.id} value={reserva.id}>
+                {reserva.id} - R$ {Number(reserva.valorTotal).toFixed(2)}
+              </option>
+            ))}
+          </select>
           <input
-            placeholder="Informe o ID da reserva confirmada"
+            placeholder="Ou informe manualmente o ID da reserva"
             value={idReserva}
             onChange={(e) => setIdReserva(e.target.value)}
             className="border rounded-lg px-4 py-2 text-sm font-mono"
           />
           <p className="text-xs text-gray-400">
-            Apenas reservas com status "confirmada" podem ser pagas.
+            Apenas reservas com status "AguardandoPagamento" podem ser pagas.
           </p>
         </div>
 

@@ -70,11 +70,11 @@ const pagamentoService = {
    * principal: ou tudo ocorre com sucesso, ou o estado anterior é preservado.
    *
    * FLUXO:
-   * 1. Valida se a reserva existe e está com status "confirmada"
+   * 1. Valida se a reserva existe e está com status "AguardandoPagamento"
    * 2. Instancia a estratégia correta via StrategyFactory (Strategy Pattern)
    * 3. Delega o processamento para a estratégia concreta (API externa simulada)
    * 4. Persiste o registro de Pagamento no banco local
-   * 5. Atualiza o status da Reserva para "aguardando_estadia"
+   * 5. Atualiza o status da Reserva para "Paga"
    * Em caso de falha em qualquer etapa, nenhuma alteração é persistida.
    *
    * @param {string} idReserva - ID da reserva a ser paga.
@@ -96,10 +96,10 @@ const pagamentoService = {
       );
     }
 
-    if (reserva.status !== "confirmada") {
+    if (reserva.status !== "AguardandoPagamento") {
       throw new Error(
         `Não é possível processar o pagamento: a reserva está com status "${reserva.status}". ` +
-          `Apenas reservas com status "confirmada" podem ser pagas.`
+          `Apenas reservas com status "AguardandoPagamento" podem ser pagas.`
       );
     }
 
@@ -158,10 +158,10 @@ const pagamentoService = {
 
     // ETAPA 5 — Atualizar o status da Reserva
     // O pagamento aprovado avança o ciclo de vida da reserva.
-    // O boleto mantém a reserva "confirmada" até a compensação.
+    // O boleto mantém a reserva em "AguardandoPagamento" até a compensação.
     if (resultadoAPI.status === "aprovado") {
       await axios.patch(`${API_URL}/reservas/${idReserva}`, {
-        status: "aguardando_estadia",
+        status: "Paga",
       });
     }
 
