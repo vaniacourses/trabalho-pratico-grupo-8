@@ -58,6 +58,8 @@ aluguel-temporada/
 │   ├── factories/                 # Padrões GOF
 │   │   └── UsuarioFactory.js      # Factory
 │   ├── components/
+|   |   ├── avaliacao/
+|   |   |   └── AvaliacaoCard.jsx
 │   │   ├── common/                # Componentes reutilizáveis
 │   │   │   ├── CurrencyInput.jsx
 │   │   │   └── EnderecoInput.jsx
@@ -72,9 +74,23 @@ aluguel-temporada/
 │   │   │   ├── ImovelCard.jsx
 │   │   │   ├── PassosDadosImovel.jsx          # Passo do wizard (UC05)
 │   │   │   └── PassosAtivarImovel.jsx         # Passo do wizard (UC07)
+|   |   ├── pagamentos/
+|   |   |   └── PagamentoCard.jsx 
+|   |   ├── reservas/
+|   |   |   ├── PoliticaCancelamentoCard.jsx
+|   |   |   └── ReservaCard.jsx
 │   │   └── usuarios/
 │   │       └── UsuarioCard.jsx
+|   ├── models/
+|   |   ├── PoliticaCancelamento.js
+|   |   └── Reserva.js
 │   ├── pages/
+|   |   ├── avaliacoes/
+|   |   |   ├── CadastrarAvaliacao.jsx
+|   |   |   ├── EditarAvaliacao.jsx
+|   |   |   └── ListaAvaliacao.jsx
+|   |   ├── denuncias/
+|   |   |   └── CadastrarDenuncias.jsx
 │   │   ├── disponibilidades/
 │   │   │   ├── CadastrarDisponibilidade.jsx
 │   │   │   ├── EditarDisponibilidade.jsx
@@ -84,6 +100,19 @@ aluguel-temporada/
 │   │   │   ├── CadastrarImovelWizard.jsx      # Caso de Uso Transicional (UC05→UC06→UC07)
 │   │   │   ├── EditarImovel.jsx
 │   │   │   └── ListaImoveis.jsx
+│   │   ├── pagamentos/
+│   │   │   ├── DetalhesPagamento.jsx
+│   │   │   ├── ListaPagamento.jsx
+│   │   │   └── ProcessarPagamento.jsx
+│   │   ├── relatorios/
+│   │   │   └── RelatorioImovel.jsx
+│   │   ├── reservas/
+│   │   │   ├── CadastrarPoliticaCancelamento.jsx
+│   │   │   ├── CadastrarReserva.jsx
+│   │   │   ├── DetalheReserva.jsx
+│   │   │   ├── EditarPoliticaCancelamento.jsx
+│   │   │   ├── ListaPoliticaCancelamento.jsx
+│   │   │   └── ListaReservas.jsx
 │   │   └── usuarios/
 │   │       ├── CadastrarUsuario.jsx
 │   │       ├── EditarUsuarios.jsx
@@ -91,12 +120,29 @@ aluguel-temporada/
 │   ├── routes/
 │   │   └── AppRoutes.jsx
 │   ├── services/                  # Comunicação com a API
+│   │   ├── avaliacaoService.js
+│   │   ├── cadastrarImovelTransacao.js
+│   │   ├── denunciaService.js
 │   │   ├── disponibilidadeService.js
 │   │   ├── imovelService.js
+│   │   ├── pagamentoService.js
+│   │   ├── politicaCancelamentoService.js
+│   │   ├── reservaService.js
 │   │   └── usuarioService.js
+│   ├── states/
+│   │   └── EstadosReservas.js
+│   ├── strategies/
+│   |   ├── PagamentoStrategies.js
+│   |   └── PagamentoStrategy.js
+│   ├── templates/
+│   |   ├── AvaliacaoAnfitriao.js
+│   |   ├── AvaliacaoBase.js
+|   |   └── AvaliacaoHospede.js
 │   └── utils/
 │       ├── comodidades.js         # Comodidades pré-definidas do sistema
-│       └── imovelUtils.js         # Utilitários (ex: calcularValorTotal)
+│       ├──  imovelUtils.js         # Utilitários (ex: calcularValorTotal)
+|       ├── reservaUtil.js
+|       └── usuarioUtil.js 
 └── db.json                        # Banco de dados mock (JSON Server)
 ```   
 ---
