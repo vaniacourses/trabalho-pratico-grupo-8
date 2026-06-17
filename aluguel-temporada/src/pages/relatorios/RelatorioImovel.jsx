@@ -28,7 +28,7 @@ function RelatorioImovel() {
 
   const calcularMedia = () => {
     if (avaliacoes.length === 0) return 0;
-    const soma = avaliacoes.reduce((acc, av) => acc + av.nota, 0);
+    const soma = avaliacoes.reduce((acc, av) => acc + Number(av.nota), 0);
     return (soma / avaliacoes.length).toFixed(1);
   };
 
