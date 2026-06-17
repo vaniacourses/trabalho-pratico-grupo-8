@@ -11,12 +11,12 @@ function CadastrarAvaliacao() {
   const [tipo, setTipo] = useState("hospede");
   const [searchParams] = useSearchParams();
   const tipoInicial = searchParams.get("tipo") || "hospede";
-  const imovelIdInicial = searchParams.get("imovelId") || "";
+  const imovelIdDaUrl = searchParams.get("imovelId") || "";
   const hospedeIdInicial = searchParams.get("hospedeId") || "";
   
 
   const [form, setForm] = useState({
-    imovelId: "",
+    imovelId: imovelIdDaUrl,
     hospedeId: "",
     anfitriaoId: "",
     nota: 0,
@@ -163,7 +163,7 @@ function CadastrarAvaliacao() {
           </button>
           <button
             type="button"
-            onClick={() => navigate("/avaliacoes")}
+            onClick={() => navigate("/")}
             className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2 rounded-lg text-sm"
           >
             Cancelar

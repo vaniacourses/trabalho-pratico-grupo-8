@@ -250,6 +250,62 @@
       "comentario": "muito bonito e dahora de ficar",
       "data": "2026-06-15T07:01:47.347Z",
       "id": "iBXl7ifDLZU"
+    },
+    {
+      "imovelId": "botaogo",
+      "hospedeId": "vasco",
+      "nota": "4",
+      "categorias": {
+        "limpeza": 3,
+        "localizacao": 4,
+        "custo": 3,
+        "comunicacao": 4
+      },
+      "comentario": "muito interessante e bonito, tanto o local quanto o apto",
+      "data": "2026-06-17T03:40:39.324Z",
+      "id": "xtDqYcXocT4"
+    },
+    {
+      "imovelId": "xGfD1DC45yc",
+      "hospedeId": "vasco",
+      "nota": "4",
+      "categorias": {
+        "limpeza": 4,
+        "localizacao": 4,
+        "custo": 3,
+        "comunicacao": 5
+      },
+      "comentario": "Otimo apartamento, local e anfitriao!",
+      "data": "2026-06-17T04:13:37.216Z",
+      "id": "Rz-9Zp5Pj78"
+    },
+    {
+      "imovelId": "2HhZyV_tg98",
+      "hospedeId": "Ricarido",
+      "nota": "4",
+      "categorias": {
+        "limpeza": 5,
+        "localizacao": 3,
+        "custo": 3,
+        "comunicacao": 4
+      },
+      "comentario": "Passei um otimo tempo com a minha familia por ai!!",
+      "data": "2026-06-17T04:26:10.635Z",
+      "id": "bfR7m1UeoBo"
+    },
+    {
+      "imovelId": "xGfD1DC45yc",
+      "hospedeId": "SuperMan",
+      "nota": "2",
+      "categorias": {
+        "limpeza": 3,
+        "localizacao": 1,
+        "custo": 2,
+        "comunicacao": 2
+      },
+      "comentario": "La no meu planeta era mais barato e bonito. Absurdo",
+      "data": "2026-06-17T04:29:59.839Z",
+      "id": "U4pFWYZ2Bg4"
     }
   ],
   "avaliacoes_hospede": [

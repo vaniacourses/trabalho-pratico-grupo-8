@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Pencil, Trash2, Calendar, AlertTriangle, Star } from "lucide-react";
+import { Pencil, Trash2, Calendar, AlertTriangle, Star, BarChart2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import COMODIDADES from "../../utils/comodidades";
 import disponibilidadeService from "../../services/disponibilidadeService";
@@ -92,6 +92,13 @@ function ImovelCard({ imovel, onEditar, onExcluir }) {
             R$ {Number(imovel.precoPorNoite).toFixed(2)}/noite
           </span>
           <div className="flex gap-2">
+            <button
+              onClick={() => navigate(`/relatorios/${imovel.id}`)}
+              className="p-2 rounded-lg bg-purple-50 hover:bg-purple-100 text-purple-600"
+              title="Ver relatório"
+            >
+              <BarChart2 size={16} />
+            </button>
             <button  
               onClick={() => navigate(`/avaliacoes/cadastrar?tipo=hospede&imovelId=${imovel.id}`)}  
               className="p-2 rounded-lg bg-yellow-50 hover:bg-yellow-100 text-yellow-600"  
